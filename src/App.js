@@ -5,10 +5,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: "",
-      list: []
+      todo: '',
+      items: []
     };
   }
+  // it takes state, creates new copy of it, takes target value of input and changes state
   onChange = event => {
     this.setState({
       todo: event.target.value
@@ -17,6 +18,8 @@ class App extends Component {
   onSubmit= event =>{
     event.preventDefault();
     this.setState({
+      todo:"",
+      items: [...this.state.items, this.state.todo]
         
     })
   }
@@ -25,9 +28,9 @@ class App extends Component {
       <div>
         <form className="App" onSubmit={this.onSubmit}>
           <input value={this.state.todo} onChange={this.onChange} />
-          <button>Submit</button>
+          <button> Submit </button>
         </form>
-        <List />
+        <List items={this.state.items} />
       </div>
     );
   }
