@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import List from "./List";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      todo:"asdsa"
-    }
-this.handleInputChange = this.handleInputChange.bind(this);
-this.handleTodoAdd = this.handleTodoAdd.bind(this);
+      todo: "",
+      list: []
+    };
   }
- handleInputChange (e){
-    e.preventDefault();
+  onChange = event => {
     this.setState({
-      todo:e.target.value
+      todo: event.target.value
+    });
+  };
+  onSubmit= event =>{
+    event.preventDefault();
+    this.setState({
+        
     })
   }
-
-handleTodoAdd(){
-
-    alert(this.state.todo);
-
-}
   render() {
-
-   
     return (
-      <div className="App">
-      <input type="text" value={this.state.value} onChange={this.handleInputChange} />
-      <button onClick={this.handleTodoAdd}>Plus</button>
-        <ul>
-      {console.log(this.state.todo)}
-        </ul>
+      <div>
+        <form className="App" onSubmit={this.onSubmit}>
+          <input value={this.state.todo} onChange={this.onChange} />
+          <button>Submit</button>
+        </form>
+        <List />
       </div>
     );
   }
